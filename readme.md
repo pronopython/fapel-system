@@ -8,6 +8,7 @@ The fapel-system was created and is optimized for adult-oriented images, videos 
 Start now!
 
 - [Installation](#installation)
+- [First steps!](#usage)
 
 
 
@@ -41,7 +42,7 @@ Yes, clone or download this repo now!
 
 ## Install python tkinter
 
-sudo apt-get install python3-tk
+`sudo apt-get install python3-tk`
 
 ## Run install.sh
 
@@ -52,7 +53,7 @@ You do need sudo for that.
 If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)
 
 
-# First steps
+# Usage
 
 ## Starting fappel_tagger
 
