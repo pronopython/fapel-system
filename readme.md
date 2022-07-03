@@ -197,6 +197,22 @@ There I can get to my today's favorites!
 
 Nice feature: The "roll over" to the next day and thus the next folder happens not at 0:00 midnight but at 4:00 AM. You can configure that in the config file.
 
+## Search and filter tagged or untagged media
+
+How to find out which images in this folder are tagged?
+
+![](img/211.png)
+
+I go one folder up and run the "search tagged" script on the folder:
+
+![](img/212.png)
+
+This creates a search folder based on currents date and time (in this example it's 2022-01-01 12:34:56) and hardlinks all tagged media into it:
+
+![](img/213.png)
+
+(Of course, the not-tagged script does the exact opposite ;-) )
+
 # There is more
 
 ... but this readme is not done yet...
