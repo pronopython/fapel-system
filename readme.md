@@ -55,7 +55,7 @@ If you are new then let the fapelsystem create the dirs (`y`). Otherwise you hav
 
 # Usage
 
-## Starting fappel_tagger
+## Starting fapel_tagger
 
 
 Now go to the media you like and start tagging!
