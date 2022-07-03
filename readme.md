@@ -173,7 +173,29 @@ This is important to know:
 If you want to see all buttons, press the button in the bottom left corner.
 
 
+## Remember today's favorites
 
+Maybe I find some pictures worth a second, condensed visit for today (let's assume it's 2022-01-01).
+
+This one
+
+![](img/201.png)
+
+and this one 
+
+![](img/202.png)
+
+both times I use the "fapel fap set" script.
+
+And I add some more pics.
+
+This creates a folder based on today's date (here 2022-01-01) and puts the images into that folder:
+
+![](img/203.png)
+
+There I can get to my today's favorites!
+
+Nice feature: The "roll over" to the next day and thus the next folder happens not at 0:00 midnight but at 4:00 AM. You can configure that in the config file.
 
 # There is more
 
