@@ -4,6 +4,9 @@ The fapel-system was created and is optimized for adult-oriented images, videos 
 
 ![](img/27173524.png)
 
+![](img/281.gif)
+
+*Note: All sample images on this page are censored* ;-)
 
 Start now!
 
@@ -40,9 +43,13 @@ advantages over database based systems
 
 Yes, clone or download this repo now!
 
-## Install python tkinter
+## Install python tkinter and pillow
 
 `sudo apt-get install python3-tk`
+
+You need pillow/PIL for fapel_elo.py:
+
+`sudo apt-get install python3-pil.imagetk`
 
 ## Run install.sh
 
@@ -213,6 +220,49 @@ This creates a search folder based on currents date and time (in this example it
 
 (Of course, the not-tagged script does the exact opposite ;-) )
 
+## Rank your pictures
+
+With the fapel_elo you can rank your images and decide which one is better (as in chess's ELO rating ;-) )
+
+![](img/270.png)
+
+*(Again, bear in mind that the images on this page are censored -- of course normally you would see your images as you know them :-) )*
+
+The GUI is quite simple: Two images from your Tags folder are presented at random.
+
+While hoovering over the window:
+
+- Press the left mouse button to favor the left image
+- Press the right mouse button to favor the right image
+
+![](img/281.gif)
+
+To prevent accidential ranking you have to press the button 3 times. The *other* image will consequently dim until a new set of images is presented.
+
+Your images are ranked in the elo folder (normally ~/fapelsystem/Elo/ ) by name (ascending numbering), so lowest number is the best!
+
+### Example
+
+In this example we have the elo program opened and the elo directory in the background.
+
+Let's favorite the right image, which is currently lower ranked in the directory as the left image:
+
+![](img/278.png)
+
+After clicking right to favor the right image, the left image starts to turn dark.
+
+![](img/279.png)
+
+Now the former right image moved *before* the former left image in the directory. A new set of images is displayed to be ranked by you!
+
+![](img/280.png)
+
+
+
+
+
+# Technical stuff
+
 ## The config file
 
 You find the config file under
@@ -302,14 +352,6 @@ It will still be visible in the finder.
 ### .hide-child-buttons
 
 If `.hide-child-buttons` is encountered, no buttons for all subdirectories (so, sub-tags) are shown unless you press the show all button.
-
-
-
-
-
-
-
-
 
 
 
