@@ -213,11 +213,110 @@ This creates a search folder based on currents date and time (in this example it
 
 (Of course, the not-tagged script does the exact opposite ;-) )
 
+## The config file
+
+You find the config file under
+
+~/.config/fapel_system.conf
+
+
+## How files are organized in folders
+
+Files are organizes in special folders, that are configured in the conf file.
+
+All folder definitions in the config file must be absolut (starting from `/` or `~`).
+
+### Fixed mandatory folders
+
+| config group | config key| content of directory                                                 |
+|--------------|-----------|----------------------------------------------------------------------|
+|[dirs]|  tagDir   | Parent directory with Tags (directories) and media files |
+|[dirs]|recycledDir|files you removed all tags from are placed in this "trash" folder|
+|[dirs]|eloDir|Folder for the ranking system|
+|[dirs]|searchResultDir|All searches are placed here with individual timestamp directories|
+|[dirs]|fapsetDir|All sets of your today's favorites are placed here|
+
+### Folders for counters
+
+You can create as many counters as you like. They are individually called via a specifically named softlink to the script.
+
+The softlink must point to
+
+`/opt/fapelsystem/fapel_counter.py`
+
+The name of the softlink must *end* with a key for the specific counter ("COUNTERID")
+
+`Whatever_you-want_COUNTERID.py`
+
+The key to your counter ist the `COUNTERID` (the last word preceeded by the last "`_`" or "`-`") 
+
+This key must then be present in the config file:
+
+| config group | config key| content of directory                                                 |
+|--------------|-----------|----------------------------------------------------------------------|
+|[countersDirs]|  COUNTERID   | Parent directory of counter COUNTERID |
+
+
+## Tag directory dot files
+
+Behaviour of the tagger for a Tag is controlled via (hidden) dot files.
+All files are optional.
+
+
+### .taginfo
+
+The .taginfo file contains a tooltip that is shown in the fapel-tagger when you hoover over a button.
+
+Its content is built like a config file an looks like
+
+`[general]`
+
+`tooltip=The tip text`
+
+### .exclude_subdirs
+
+If `.exclude_subdirs` is encountered, all subdirectories are not parsed for additional Tags and fapels / media files.
+The file should be empty.
+
+#### Example
+
+You want to place a lot of images of a model inside the corresponding tag directory without parsing all these subdirectories.
+To hide all the numbered "Set" dirs:
+
+`/Tags/Models/Latex/Bianca Beauchamp/Set 001/`
+
+`/Tags/Models/Latex/Bianca Beauchamp/Set 002/`
+
+`...`
+
+`/Tags/Models/Latex/Bianca Beauchamp/Set 245/`
+
+we place a `.exclude_subdirs` file into the Bianca Beauchamp folder
+
+
+### .hide-button
+
+A Tag (a directory) with `.hide-button` in it will not show up as a button in the fapel-tagger unless you press the show all button.
+It will still be visible in the finder.
+
+### .hide-child-buttons
+
+If `.hide-child-buttons` is encountered, no buttons for all subdirectories (so, sub-tags) are shown unless you press the show all button.
+
+
+
+
+
+
+
+
+
+
+
+
 # There is more
 
 ... but this readme is not done yet...
-
-
 
 
 # Remarks
