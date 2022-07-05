@@ -85,7 +85,7 @@ sudo cp $SOURCEDIR/fapelsystemlib/* $INSTALLDIR/fapelsystemlib
 sudo mkdir $INSTALLDIR/tools
 sudo cp $SOURCEDIR/tools/* $INSTALLDIR/tools
 
-
+sudo cp $SOURCEDIR/fapel_elo.py $INSTALLDIR
 
 cp $SOURCEDIR/fapel_system_template.conf $CONFIGDIR/fapel_system.conf
 
@@ -173,4 +173,3 @@ done
 
 
 echo "done"
-
