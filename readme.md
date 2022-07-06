@@ -1,6 +1,10 @@
+# Fapel-System - The Adult Media Organizer
+
+**Tag, Rate and Enjoy your porn collection!**
+
 With the fapel-system you can organize your images and video collection under Linux with standard folders. Everything works with hardlinks.
 
-The fapel-system was created and is optimized for adult-oriented images, videos and movies. Fapel stands for "fap-able element" :-) If you are a passionate collector, this might be for you.
+The fapel-system was created and is optimized for adult-oriented images, videos and movies (Pornography / Porn / Pron). Fapel stands for "fap-able element" :-) If you are a passionate collector, this might be for you.
 
 ![](img/27173524.png)
 
@@ -12,7 +16,7 @@ Start now!
 
 - [Installation](#installation)
 - [First steps!](#usage)
-
+- [Technical stuff](#technical-stuff)
 
 
 # Comparison with other Systems
@@ -24,7 +28,7 @@ advantages over database based systems
 * perfectly integrated into linux
 * files can be renamed and moved (on the same drive) in any other program without problem
 * everything is mouse only (one hand)
-* fixed positions of buttons
+* fixed positions of tag buttons in the GUI, so you remember them by their location
 * delete hardlinks without consequences
 
 
@@ -60,7 +64,7 @@ You do need sudo for that.
 If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)
 
 
-# Usage
+# First steps!
 
 ## Starting fapel_tagger
 
