@@ -6,6 +6,8 @@ With the fapel-system you can organize your images and video collection under Li
 
 The fapel-system was created and is optimized for adult-oriented images, videos and movies (Pornography / Porn / Pron). Fapel stands for "fap-able element" :-) If you are a passionate collector, this might be for you.
 
+![](img/142.png)
+
 ![](img/27173524.png)
 
 ![](img/281.gif)
@@ -262,8 +264,53 @@ Now the former right image moved *before* the former left image in the directory
 ![](img/280.png)
 
 
+# TagPacks
+
+You can install additionally Tags by using TagPacks.
+TagPacks are basically CSV Table files containing which dirs should be created.
+
+Use the tagPackInstall.py tool under /opt/fapelsystem/tools
+
+Preview a tagPack file with `-s`, example:
+
+`./tagPackInstall.py -s tagPack_Models_20220704a.csv`
+
+Install it with (example):
+
+`./tagPackInstall.py tagPack_Models_20220704a.csv`
 
 
+These are some additional TagPacks:
+
+
+## TagPacks with Models
+
+
+![](img/144.png)
+
+[Go to TagPack Download](http://fapel-system.epizy.com/)
+
+![](img/143.png)
+
+[Go to TagPack Download](http://fapel-system.epizy.com/)
+
+## Feelings TagPack
+
+![](img/141.png)
+
+Category based on feelings. This TagPack installs additional counters (hard-c and justflow):
+
+![](img/142.png)
+
+[Go to TagPack Download](http://fapel-system.epizy.com/)
+
+## TagPack based on P.H. Categories
+
+Inspired by the video platform P.H.
+
+![](img/145.png)
+
+[Go to TagPack Download](http://fapel-system.epizy.com/)
 
 # Technical stuff
 
