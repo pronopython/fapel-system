@@ -2,7 +2,9 @@
 
 **Tag, Rate and Enjoy your porn collection!**
 
-With the fapel-system you can organize your images and video collection under Linux with standard folders. Everything works with hardlinks.
+:eggplant: :sweat_drops: :peach: :cherries: :movie_camera: :lollipop: :hotdog: :eggplant: :sweat_drops: :peach: :cherries: :movie_camera: :lollipop: :hotdog:
+
+With the fapel-system you can organize your **adult images and video collection** under Linux with standard folders. Everything works with hardlinks.
 
 The fapel-system was created and is optimized for adult-oriented images, videos and movies (Pornography / Porn / Pron). Fapel stands for "fap-able element" :-) If you are a passionate collector, this might be for you.
 
@@ -12,19 +14,23 @@ The fapel-system was created and is optimized for adult-oriented images, videos 
 
 ![](img/281.gif)
 
-*Note: All sample images on this page are censored* ;-)
+> :eggplant: :sweat_drops: *Note: All sample images on this page are censored*
 
-Start now!
+---
+
+# Start now!
 
 - [Installation](#installation)
 - [First steps!](#usage)
 - [Technical stuff](#technical-stuff)
 
+---
 
 # Comparison with other Systems
 advantages over database based systems
 
 * works with every file type, jpg, gif, mov, mp4,...
+* respects **your** privacy! No database, no server connection -- just your files! Dedicated to ![Ancilla Tilia](https://en.wikipedia.org/wiki/Ancilla_van_de_Leest), former fetish model and privacy activist.
 * backup compatible
 * Survives itself (software not needed to browse categories, since these are normal folders)
 * perfectly integrated into linux
@@ -41,6 +47,7 @@ advantages over database based systems
 * Python 3 with tkinter
 * all folders and fapels must be on one logical drive because everything works with hardlinks
 
+---
 
 # Installation
 
@@ -51,20 +58,18 @@ Yes, clone or download this repo now!
 
 ## Install python tkinter and pillow
 
-`sudo apt-get install python3-tk`
+`sudo apt-get install python3-tk python3-pil.imagetk`
 
-You need pillow/PIL for fapel_elo.py:
-
-`sudo apt-get install python3-pil.imagetk`
 
 ## Run install.sh
 
-Run `install.sh` in `fapelsystem/`
+In `fapelsystem/` run
 
-You do need sudo for that.
+`sudo install.sh`
 
-If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)
+> :eggplant: :sweat_drops: *If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)*
 
+---
 
 # First steps!
 
@@ -101,7 +106,7 @@ You can also delete directories (delete Tags) as you like.
 
 Back to the images, rightclick and start the fapel-tagger.
 
-It will now automatically have all the tags you created (as directories). I have create a few:
+It will now automatically have all the tags you created (as directories). I have created a few:
 
 ![](img/003.png)
 
@@ -165,6 +170,8 @@ Now it is in the sub folder "0002".
 
 So, notice script counts "events" you noticed some file. The same is true for the "ct" script, except it's purpose is to count how many times you "enjoyed" a file ;-)
 
+> :eggplant: :sweat_drops: *Note: Ct stands for "C.m to", not count, not computer tomography* :smirk:
+
 Oh this beach wear image...
 
 ![](img/013.png)
@@ -183,8 +190,8 @@ This is important to know:
 * The ct directory is inside the /Tags folder, the /Notice directory is outside. So you only see the ct hardlinked media!
 * BUT You only see the ct and numbered dirs when a file was tagged! This is to prevent cluttering the tag button gui.
 
-If you want to see all buttons, press the button in the bottom left corner.
 
+> :peach: *Tip: If you want to see all buttons, press the button in the bottom left corner!*
 
 ## Remember today's favorites
 
@@ -220,7 +227,7 @@ I go one folder up and run the "search tagged" script on the folder:
 
 ![](img/212.png)
 
-This creates a search folder based on currents date and time (in this example it's 2022-01-01 12:34:56) and hardlinks all tagged media into it:
+This creates a search folder based on current date and time (in this example it's 2022-01-01 12:34:56) and hardlinks all tagged media into it:
 
 ![](img/213.png)
 
@@ -240,6 +247,8 @@ While hoovering over the window:
 
 - Press the left mouse button to favor the left image
 - Press the right mouse button to favor the right image
+
+> :eggplant: :sweat_drops: *Note: If you prefer to click on the images with your left mouse button only, press the "Mouse Mode" button to toggle the mouse behaviour. You then of course have to click on the winning image.*
 
 ![](img/281.gif)
 
@@ -263,6 +272,7 @@ Now the former right image moved *before* the former left image in the directory
 
 ![](img/280.png)
 
+---
 
 # TagPacks
 
@@ -282,6 +292,7 @@ Install it with (example):
 
 These are some additional TagPacks:
 
+> :eggplant: :sweat_drops: *Note: My TagPacks are not hosted on github because of their adult content*
 
 ## TagPacks with Models
 
@@ -312,14 +323,15 @@ Inspired by the video platform P.H.
 
 [Go to TagPack Download](http://fapel-system.epizy.com/)
 
+---
+
 # Technical stuff
 
 ## The config file
 
 You find the config file under
 
-~/.config/fapel_system.conf
-
+`~/.config/fapel_system.conf`
 
 ## How files are organized in folders
 
