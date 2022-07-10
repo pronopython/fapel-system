@@ -30,7 +30,7 @@ The fapel-system was created and is optimized for adult-oriented images, videos 
 advantages over database based systems
 
 * works with every file type, jpg, gif, mov, mp4,...
-* respects **your** privacy! No database, no server connection -- just your files! Dedicated to ![Ancilla Tilia](https://en.wikipedia.org/wiki/Ancilla_van_de_Leest), former fetish model and privacy activist.
+* respects **your** privacy! No database, no server connection -- just your files! Dedicated to [Ancilla Tilia](https://en.wikipedia.org/wiki/Ancilla_van_de_Leest), former fetish model and privacy activist.
 * backup compatible
 * Survives itself (software not needed to browse categories, since these are normal folders)
 * perfectly integrated into linux
