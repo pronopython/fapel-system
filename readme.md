@@ -21,7 +21,8 @@ The fapel-system was created and is optimized for adult-oriented images, videos 
 # Start now!
 
 - [Installation](#installation)
-- [First steps!](#usage)
+- [First steps!](#first-steps)
+- [Advanced features](#advanced-features)
 - [Technical stuff](#technical-stuff)
 
 ---
@@ -67,7 +68,16 @@ In `fapelsystem/` run
 
 `sudo install.sh`
 
+
 > :eggplant: :sweat_drops: *If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)*
+
+## Optional: Edit Config File to set up your own directories
+
+Edit the config file
+
+`~/.config/fapel_system.conf`
+
+to use the directories you want.
 
 ---
 
@@ -193,9 +203,17 @@ This is important to know:
 
 > :peach: *Tip: If you want to see all buttons, press the button in the bottom left corner!*
 
+
+# Advanced features
+
 ## Remember today's favorites
 
-Maybe I find some pictures worth a second, condensed visit for today (let's assume it's 2022-01-01).
+Maybe I find some pictures worth a second, condensed visit for today.
+Or I want to collect some pictures for today's "enjoyment".
+
+You can collect pictures in a separate directory, which is auto generated based on today's date.
+
+So let's assume it's 2022-01-01 and pick some images:
 
 This one
 
@@ -217,6 +235,125 @@ There I can get to my today's favorites!
 
 Nice feature: The "roll over" to the next day and thus the next folder happens not at 0:00 midnight but at 4:00 AM. You can configure that in the config file.
 
+
+## Filter Tag Library to focus on topics
+
+> :peach: *Only tested with nautilus*
+
+
+Sometimes you may do not want to see certain pictures or videos in your /Tags folder:
+
+- My most favorable images may draw to much attention on them and I miss out other great images.
+
+- I may not be in the mood for kinky stuff and do not want to see this part of my collection right now.
+
+- I may just have enjoyed tentacle pron and now regret it and do not want to see it (temporarly... of course :smirk: )
+
+
+The problem with these images is that they distract me by directing all the attention onto them.
+
+The Filter system does theirfore not filter **on** specific media but filters **out** specific media.
+It puts media into "exiles", these are here called "fapxiles".
+
+You can define which media belongs to which fapxile.
+
+
+> :peach: *Technically the filter is realized by dynamically creating .hidden files in all Tag folders. !!*
+
+
+> :peach: *You have to switch "Show Hidden Files" off in your file manager, of course.*
+
+
+Some examples:
+
+### Filter Models
+Within my /Material/Latex tag I also have some images of Princess Fatale. I really like these pictures and now they (she) distracts me (I want to open her pictures first).
+
+![](img/763826432.png)
+
+
+Luckily I have tagged the images of Princess Fatale, so she has a separate Folder within the /Models Tag:
+
+
+![](img/3298424.png)
+
+
+In this folder I create a hidden file named ".fapxile" with the content:
+
+
+`[fapxileForThisTag]`
+
+`[fapxileForFapelsOfThisTag]`
+
+`Princess Fatale`
+
+
+`[fapxileForSubTagsAndSubFapels]`
+
+`Princess Fatale`
+
+`[excludedSubTags]`
+
+> :peach: *Pro tip: install folder /opt/fapelsystem contains a template of this file called fapxile_file_template*
+
+
+
+Now I start fapxile exile script...
+
+> :peach: *You do not need to select a specific image and you can start this script everywhere.*
+
+![](img/432432.png)
+
+![](img/4837312.png)
+
+...and switch "Princess Fatale" to "hidden" and hit Apply.
+
+![](img/99787312.png)
+
+
+
+After pressing F5 in the file manager, I do not see her pictures in the /Material/Latex Tag folder anymore.
+
+![](img/8824314.png)
+
+
+### Filter most favorable fapels
+
+Pictures I "enjoyed a lot" may be distracting because I see them first and not other good pictures near them.
+
+I obviously enjoyed this red catsuit image of Lucy 0004 times.
+
+It is also present in the /Material/Latex Tag and I want to focus on all the other good images.
+
+![](img/99078327.png)
+
+When I activate the "ct" exile (which is preconfigured when you installed the fapel system with an inital tag folder), then all the media that is tagged with 0002 and more will be hidden.
+
+
+![](img/8732243.png)
+
+Now this image and all the other media I enjoyed more than once is hidden:
+
+![](img/8328253.png)
+
+
+
+
+### Show all fapels
+
+If you want to see all media files again, you can switch off all fapxiles at once using the Show all Button in the left corner:
+
+![](img/73982.png)
+
+With this you will reset the selected fapxiles.
+
+If you just want to quick check the hidden fapels without messing with your selected fapxiles, you can select *show hidden files* in the file manager's options menu:
+
+![](img/8726632.png)
+
+![](img/98626723.png)
+
+
 ## Search and filter tagged or untagged media
 
 How to find out which images in this folder are tagged?
@@ -232,6 +369,45 @@ This creates a search folder based on current date and time (in this example it'
 ![](img/213.png)
 
 (Of course, the not-tagged script does the exact opposite ;-) )
+
+
+
+## Search tagged source file
+
+All images within the /Tags folder are just hardlinks of your original images somewhere in your collection.
+
+Sometimes you want to find the original image / file.
+
+I obviously like this image of Jordan but I know there are more of her somewhere. I select her image and start the fapel-search-source-file script:
+
+![](img/829732.png)
+
+The script warns me that it will take a while.
+
+This is because the fapel system is *not* a database and the script just starts a search using the linux commandline tool "find".
+
+![](img/8383672.png)
+
+Select the base / root folder of you search. Normally this is the base folder of your collection.
+
+![](img/6262673.png)
+
+
+The search did finish and opened up for me a new folder containing *soft*-links to all found images.
+
+![](img/88264267.png)
+
+Number 0_ is always the original image I started the search from. So I select the 1_ image and start the open-softlink-folder script:
+
+![](img/987762.png)
+
+This script opens the folder with the image I searched and now I have found all the other pictures I was looking for!
+
+![](img/132462.png)
+
+
+
+
 
 ## Rank your pictures
 
@@ -412,23 +588,82 @@ we place a `.exclude_subdirs` file into the Bianca Beauchamp folder
 A Tag (a directory) with `.hide-button` in it will not show up as a button in the fapel-tagger unless you press the show all button.
 It will still be visible in the finder.
 
+
+#### Example
+
+You have a directory that contains Tags describing different clothing materials: 
+
+
+`/Tags/Material/Latex`
+
+`/Tags/Material/Leather`
+
+`/Tags/Material/PVC`
+
+`...`
+
+`/Tags/Material/Spandex`
+
+
+You want to have the material itself as buttons ("Material/Latex", "Material/PVC") but not the Tag "Material" itself.
+Place an empty file named ".hide_button" in the `/Tags/Material` folder.
+
+You still can use the Tag "Material" when you use the finder and the Tag shows as a button when it is assigned to a file which is currently opened in the fapel tagger.
+
+
 ### .hide-child-buttons
 
 If `.hide-child-buttons` is encountered, no buttons for all subdirectories (so, sub-tags) are shown unless you press the show all button.
+They are still visible in the finder.
+
+#### Example
+
+You have a counter dir:
 
 
+`/Tags/Videos/Watched completly/`
 
+with it's automated subdirectories you count how often you completly watched a video:
+
+
+`/Tags/Videos/Watched completly/0001`
+
+`/Tags/Videos/Watched completly/0002`
+
+`...`
+
+`/Tags/Videos/Watched completly/0007`
+
+Place an empty file named ".hide-child-buttons" in the `/Tags/Videos/Watched completly` folder.
+If you also want to hide the `Watched completly` folder by itself, just *also* place an empty file named ".hide_button" in it, too.
 
 # There is more
 
 ... but this readme is not done yet...
 
+# Changelog
+
+## Release November 2022
+
+### Added
+
+- fapel_exiles.py Show and hide media based on mood or topic
+
+- fapel_search_source_file.py Searchs for the original hardlinked media in your library.
+
+- openLink.sh opens up the directory of a soft linked file
+
+- tagPackInstall.py now asks if a counter should be installed
+
+
+### Fixed
+
+- install.sh now installs fapel_elo.py
+
+### Security
+
+- tagPackInstall.py now cannot leave the destination directory via /../ paths in a malicious tag pack file
 
 # Remarks
 remember that hardlinks do point to the same binary data of a file, altering it in one place alters it everywhere!
-
-
-
-
-
 
