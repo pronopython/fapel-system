@@ -10,7 +10,7 @@
 #
 ##############################################################################################
 #
-VERSION=0.0.1  # TODO
+VERSION=0.0.2
 #
 INSTALLDIR=/opt/fapelsystem
 CONFIGDIR=~/.config
@@ -40,7 +40,6 @@ SOURCEDIR=./fapelsystem_install_files
 #
 # TODO comment header
 # TODO clean out comments
-# TODO elo.py missing, how should it be integrated? desktop?
 
 
 
@@ -57,7 +56,9 @@ EMOJITAG=$(echo -e "\U2705")
 EMOJIHEARTS=$(echo -e "\U2764\UFE0F")
 EMOJIMAGGLAS=$(echo -e "\U1F50D")
 EMOJICALENDAR=$(echo -e "\U1F4C5")
-
+EMOJIARROW=$(echo -e "\U27A1")
+EMOJIISLAND=$(echo -e "\U1F3DD")
+EMOJITROPHY=$(echo -e "\U1F3C6")
 
 ##################################################################################
 
@@ -86,6 +87,9 @@ sudo mkdir $INSTALLDIR/tools
 sudo cp $SOURCEDIR/tools/* $INSTALLDIR/tools
 
 sudo cp $SOURCEDIR/fapel_elo.py $INSTALLDIR
+sudo cp $SOURCEDIR/fapel_exiles.py $INSTALLDIR
+
+sudo cp $SOURCEDIR/fapxile_file_template $INSTALLDIR
 
 cp $SOURCEDIR/fapel_system_template.conf $CONFIGDIR/fapel_system.conf
 
@@ -105,16 +109,24 @@ case $yn in
 		copy_and_link fapel_counter.py 2${EMOJIHEARTS}--fapel-notice.py;
 		copy_and_link fapel_counter.py 6${EMOJIEGGPLANT}${EMOJIWATER}--fapel-ct.py;
 		copy_and_link fapel_search_not_tagged.py 5${EMOJIMAGGLAS}--fapel-search-not-tagged.py;
+		copy_and_link fapel_search_source_file.py 5${EMOJIMAGGLAS}--fapel-search-source-file.py;
 		copy_and_link fapel_search_tagged.py 4${EMOJIMAGGLAS}--fapel-search-tagged.py;
 		copy_and_link fapel_fap_set.py 3${EMOJICALENDAR}--fapel-fap-set.py;
+		copy_and_link openLink.sh 9${EMOJIARROW}--open-softlink-folder.sh;
+		copy_and_link fapel_exiles.py 9${EMOJIISLAND}--fapel-exiles.py;
+		copy_and_link fapel_elo.py 9${EMOJITROPHY}--fapel-elo.py;
 		break;;
-		
+
 	[nN] )  copy_and_link fapel_tagger.py 1-fapel-tagger.py;
 		copy_and_link fapel_counter.py 2-fapel-notice.py;
 		copy_and_link fapel_counter.py 6-fapel-ct.py;
 		copy_and_link fapel_search_not_tagged.py 5-fapel-search-not-tagged.py;
+		copy_and_link fapel_search_source_file.py 5-fapel-search-source-file.py;
 		copy_and_link fapel_search_tagged.py 4-fapel-search-tagged.py;
 		copy_and_link fapel_fap_set.py 3-fapel-fap-set.py;
+		copy_and_link openLink.sh 9-open-softlink-folder.sh;
+		copy_and_link fapel_exiles.py 9-fapel-exiles.py;
+		copy_and_link fapel_elo.py 9-fapel-elo.py;
 		break;;
 		
 	* ) echo invalid response;;
@@ -151,6 +163,13 @@ case $yn in
 		touch ~/fapelsystem/Tags/Ct/Ct/.hide_button
 		touch ~/fapelsystem/Tags/Ct/Ct/.hide_child_buttons
 
+		echo "[fapxileForThisTag]" > ~/fapelsystem/Tags/Ct/Ct/.fapxile
+		echo "[fapxileForFapelsOfThisTag]" >> ~/fapelsystem/Tags/Ct/Ct/.fapxile
+		echo "[fapxileForSubTagsAndSubFapels]" >> ~/fapelsystem/Tags/Ct/Ct/.fapxile
+		echo "ct" >> ~/fapelsystem/Tags/Ct/Ct/.fapxile
+		echo "[excludedSubTags]" >> ~/fapelsystem/Tags/Ct/Ct/.fapxile
+		echo "Ct/Ct/0001" >> ~/fapelsystem/Tags/Ct/Ct/.fapxile
+
 
 		mkdir ~/fapelsystem/Tags/Hoover_over_me_for_a_tip
 
@@ -173,3 +192,4 @@ done
 
 
 echo "done"
+
