@@ -10,7 +10,7 @@
 #
 ##############################################################################################
 #
-VERSION = "0.1.0" #TODO
+VERSION = "0.1.1" #TODO
 INSTALLDIR="/opt/fapelsystem"
 #
 ##############################################################################################
@@ -149,6 +149,22 @@ for line in csvFile:
 				rot13on[position] = False
 
 	elif line[0] == "TAG":
+
+
+		if line[1].find("../") != -1:
+			print("Malicious relative path found in tagPack file tag dir:")
+			print(line[1])
+			print("aborting")
+			sys.exit(1)
+
+		if line[3].find("../") != -1:
+			print("Malicious relative path found in tagPack file dot filename:")
+			print(line[3])
+			print("aborting")
+			sys.exit(1)
+
+
+
 		tagpath = os.path.join(rootpath, line[1])
 		if not os.path.isdir(tagpath):
 			print("Creating tag",line[1])
@@ -178,6 +194,8 @@ for line in csvFile:
 
 
 	elif line[0] == "COUNTER":
+
+
 		counterDestinationPath = os.path.join(rootpath, line[1])
 		
 		scriptPath = configParser.getDir('dirs','filemanagerScriptDir')
@@ -185,31 +203,39 @@ for line in csvFile:
 		linkName = line[2]
 		linkNameEmojis = line[3].encode('UTF-8').decode('unicode-escape')
 
+		print("Counter:")
+		print("   Tag:",counterDestinationPath)
+		print("   Rightclick script:", linkName," / ",linkNameEmojis)
+		
 
-		if (counterEmojis == None):
-			answer = input("Install nautilus scripts with emojis? (y/n)")
-			counterEmojis = (answer == "y") or (answer == "Y")
+		answer = input("Install this counter? (y/n)")
+		
+		if ((answer == "y") or (answer == "Y")):
+		
+			if (counterEmojis == None):
+				answer = input("Install nautilus scripts with emojis? (y/n)")
+				counterEmojis = (answer == "y") or (answer == "Y")
 
-		if counterEmojis:
-			linkFilename = os.path.join(scriptPath,linkNameEmojis)
-		else:
-			linkFilename = os.path.join(scriptPath,linkName)
+			if counterEmojis:
+				linkFilename = os.path.join(scriptPath,linkNameEmojis)
+			else:
+				linkFilename = os.path.join(scriptPath,linkName)
 
-		if not os.path.isfile(linkFilename):
-			print("Creating counter",linkName)
-			if not simulation:
+			if not os.path.isfile(linkFilename):
+				print("Creating counter",linkName)
+				if not simulation:
 
-				os.symlink(os.path.join(INSTALLDIR,"fapel_counter.py"),linkFilename)
+					os.symlink(os.path.join(INSTALLDIR,"fapel_counter.py"),linkFilename)
 
-				counterKey = dirHelper.getLastPartOfFilename(linkFilename)
-				print("Counter Name:", counterKey)
-
-
-				counterPath = os.path.join(configParser.getDir('dirs','tagDir'),line[1])
-				configParser.changeConfig()['countersDirs'][counterKey] = counterPath
+					counterKey = dirHelper.getLastPartOfFilename(linkFilename)
+					print("Counter Name:", counterKey)
 
 
-				print("Installed counter",counterKey)
+					counterPath = os.path.join(configParser.getDir('dirs','tagDir'),line[1])
+					configParser.changeConfig()['countersDirs'][counterKey] = counterPath
+
+
+					print("Installed counter",counterKey)
 
 
 	elif line[0] == "REM":

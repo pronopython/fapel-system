@@ -10,7 +10,7 @@
 #
 ##############################################################################################
 #
-VERSION = "0.1.0" #TODO
+VERSION = "0.1.0"
 INSTALLDIR="/opt/fapelsystem"
 #
 ##############################################################################################
@@ -33,7 +33,7 @@ INSTALLDIR="/opt/fapelsystem"
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 ##############################################################################################
-
+# TODO Bug: .ts , . , .recycled etc will be exported, too
 
 import os
 import sys
