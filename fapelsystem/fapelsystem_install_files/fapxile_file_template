@@ -1,0 +1,26 @@
+# fapxile definition file
+# rename to .fapxile
+
+
+# All Exiles this Tag (=the Folder containing this file) itself belongs to.
+# This folder alone is then not visible (its fapels are still visible in other folders)
+# Usecase: Hide this Tag but still show its fapels in different tags
+[fapxileForThisTag]
+
+
+# All Exiles all Fapels AND all their Hardlinks will belong to.
+# All files within this folder containing this file will not be visible.
+# Also all other hardlinks of these files in other folders will be hidden.
+# Usecase: Tag fapels with this Tag and hide all of them with one click.
+[fapxileForFapelsOfThisTag]
+
+
+# All Exiles all Subtags / Subfolders and their fapels (with all hardlinks)  will belong to.
+# Usecase: Hide all fapels from a counter-dir (like e.g. c-to)
+[fapxileForSubTagsAndSubFapels]
+
+# All SubTags of this Tag listed here (with full name) are ignored by [fapxileForSubTagsAndSubFapels]
+# Usecase: Ignore all c-to tagged media except "0001" media.
+# Full name means name as it is displayed in the tagger on the button
+[excludedSubTags]
+
