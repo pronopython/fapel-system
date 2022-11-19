@@ -66,8 +66,11 @@ Yes, clone or download this repo now!
 
 In `fapelsystem/` run
 
-`sudo install.sh`
+`chmod +x install.sh`
 
+`./install.sh`
+
+> :cherries: *Do not run the install.sh as root (sudo), as it would create config files for root user and not for you*
 
 > :eggplant: :sweat_drops: *If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)*
 
