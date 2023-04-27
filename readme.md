@@ -750,7 +750,7 @@ If you also want to hide the `Watched completly` folder by itself, just *also* p
 
 # Changelog
 
-## Release April 2023
+## Release April 2023 v0.2.0-alpha
 
 ### Added
 
@@ -763,7 +763,7 @@ If you also want to hide the `Watched completly` folder by itself, just *also* p
 - installer for Ubuntu Linux was changed accordingly
 
 
-## Release November 2022
+## Release November 2022 v0.1.0-alpha
 
 ### Added
 
