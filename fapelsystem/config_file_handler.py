@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #
 ##############################################################################################
 #
@@ -9,12 +9,7 @@
 #
 ##############################################################################################
 #
-VERSION = "0.1.0" #TODO
-CONFIGFILE="~/.config/fapel_system.conf"
-#
-##############################################################################################
-#
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -36,24 +31,21 @@ CONFIGFILE="~/.config/fapel_system.conf"
 import os
 from pathlib import Path
 import configparser
-from fapelsystemlib import dirHelper
+from . import dir_helper as dir_helper
 
 
 ##############################################################################################
 #Load Config
 ##############################################################################################
 
-class FapelSystemConfig:
+class FapelSystemConfigFile:
 
 	
-	def __init__(self):
-		global CONFIGFILE
-		self.configFilePath = CONFIGFILE
+	def __init__(self, configFilePath):
+		self.configFilePath = configFilePath
 
-		self.homedir = dirHelper.getHomeDir()
-		self.configFilePath = dirHelper.expandHomeDir(CONFIGFILE)
-
-
+		self.homedir = dir_helper.getHomeDir()
+		self.configFilePath = dir_helper.expandHomeDir(self.configFilePath)
 
 		self.createConfigParserAndLoadConfig()
 		self.configChanged = False
@@ -64,7 +56,6 @@ class FapelSystemConfig:
 		if (os.path.isfile(self.configFilePath)):
 			self.configParser = configparser.RawConfigParser(allow_no_value=True)
 			self.configParser.read(self.configFilePath)
-			#print(self.configParser.get('dirs','tagDir'))
 		else:
 			print("Config file is missing, abort!")
 			exit()
@@ -81,9 +72,13 @@ class FapelSystemConfig:
 	def getInt(self, group, key):
 		return int(self.configParser.get(group, key))
 	
+	def getBoolean(self, group, key):
+		return self.configParser.get(group, key) in ("True","TRUE","true","1")
 		
-	def getDir(self, group, key):
+	def getDir(self, group, key, ifEmpty=""):
 		path = self.get(group, key)
+		if path == "":
+			return ifEmpty.replace("~", self.homedir)
 		return path.replace("~", self.homedir)
 
 	

@@ -1,21 +1,20 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #
 ##############################################################################################
 #
 # The fapel system organizes image and video collections under Linux with standard folders.
-# fappel_search_tagged.py is TODO
+# fappel_search_not_tagged.py is TODO
 #
 # For updates see git-repo at
 #https://github.com/pronopython/fapel-system
 #
 ##############################################################################################
 #
-VERSION = "0.1.0" #TODO
-INSTALLDIR="/opt/fapelsystem"
+VERSION = "0.2.0" #TODO
 #
 ##############################################################################################
 #
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -34,6 +33,8 @@ INSTALLDIR="/opt/fapelsystem"
 #
 ##############################################################################################
 #
+# TODO this is almost the same code as the _not_ not py file... put it into a lib or so!
+
 import tkinter
 from tkinter import messagebox
 import os
@@ -48,13 +49,15 @@ import subprocess
 ##############################################################################################
 
 
-sys.path.insert(0, INSTALLDIR)
-from fapelsystemlib import fapelSystemConfig
-from fapelsystemlib import dirHelper
+
+from fapelsystem import config_file_handler as config_file_handler
+from fapelsystem import dir_helper as dir_helper
 
 
-configParser = fapelSystemConfig.FapelSystemConfig()
-homedir = dirHelper.getHomeDir()
+configDir = dir_helper.getConfigDir("Fapelsystem")
+#print(configDir)
+configParser = config_file_handler.FapelSystemConfigFile(os.path.join(configDir,"fapel_system.conf"))
+homedir = dir_helper.getHomeDir()
 
 
 
@@ -72,7 +75,7 @@ print("searchResultDir",searchResultRoot)
 # load to be excluded tag names (=dirs)
 excludedSubDirs = []
 for item in configParser.items('excludedTagNames'):
-    excludedSubDirs.append(item[0])
+	excludedSubDirs.append(item[0])
 print("Excluded Tag names:", excludedSubDirs)
 
 
@@ -99,33 +102,33 @@ fapelsInodes = set()
 
 for root,d_names,f_names in os.walk(rootpath):
 
-    traverseDir = True
+	traverseDir = True
 
-    for excludedSubDir in excludedSubDirs:
-        if (root.find(excludedSubDir) != -1):
-            traverseDir = False
+	for excludedSubDir in excludedSubDirs:
+		if (root.find(excludedSubDir) != -1):
+			traverseDir = False
 
-    if (traverseDir):
-        for f_name in f_names:
-            fapelsInodes.add(os.stat(os.path.join(root,f_name)).st_ino)
+	if (traverseDir):
+		for f_name in f_names:
+			fapelsInodes.add(os.stat(os.path.join(root,f_name)).st_ino)
 
-    for f_name in f_names:
-        if (f_name == ".exclude_subdirs"):
-            excludedSubDirs.append(root)
+	for f_name in f_names:
+		if (f_name == ".exclude_subdirs"):
+			excludedSubDirs.append(root)
 
 print("Found ", len(fapelsInodes), " Fapels")
 
 
 for root,d_names,f_names in os.walk(searchDir_fullpath):
 
-    for f_name in f_names:
-        inspectedFapelFullPath = os.path.join(root,f_name)
-        inode = os.stat(inspectedFapelFullPath).st_ino
-        if (inode in fapelsInodes):
-            print("New Found", f_name)
-            os.link(inspectedFapelFullPath, os.path.join(searchResultPath, f_name))
+	for f_name in f_names:
+		inspectedFapelFullPath = os.path.join(root,f_name)
+		inode = os.stat(inspectedFapelFullPath).st_ino
+		if (inode not in fapelsInodes):	# TODO the only code difference...
+			print("New Found", f_name)
+			os.link(inspectedFapelFullPath, os.path.join(searchResultPath, f_name))
 
-    break
+	break
 
 subprocess.Popen(["xdg-open", searchResultPath])
 

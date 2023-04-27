@@ -10,16 +10,15 @@
 #
 ##############################################################################################
 #
-VERSION=0.0.2
+VERSION=0.1.0
 #
-INSTALLDIR=/opt/fapelsystem
 CONFIGDIR=~/.config
 NAUTILUSSCRIPTDIR=~/.local/share/nautilus/scripts
-SOURCEDIR=./fapelsystem_install_files
+INSTALLDIR=""
 #
 ##############################################################################################
 #
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -62,9 +61,8 @@ EMOJITROPHY=$(echo -e "\U1F3C6")
 
 ##################################################################################
 
-copy_and_link () {
+link_module () {
 	echo "installing $1"
-	sudo cp $SOURCEDIR/$1 $INSTALLDIR
 	sudo ln -s $INSTALLDIR/$1 $NAUTILUSSCRIPTDIR/$2
 	sudo chown $USER:$USER $NAUTILUSSCRIPTDIR/$2
 }
@@ -75,29 +73,33 @@ copy_and_link () {
 echo "fapelsystem installer v${VERSION}"
 echo ""
 echo "The installer now creates the program dirs and config files."
-echo "Sudo is needed for that action."
+echo "Sudo is needed for some actions."
+echo ""
+
+#pip install .
 
 
-sudo mkdir $INSTALLDIR
+if ! type "fapelsystem_printModuleDir" >/dev/null 2>&1; then
+	echo "Installing fapel system module via pip"
+	pip install .
+	echo ""
+fi
 
-sudo mkdir $INSTALLDIR/fapelsystemlib
-sudo cp $SOURCEDIR/fapelsystemlib/* $INSTALLDIR/fapelsystemlib
 
-sudo mkdir $INSTALLDIR/tools
-sudo cp $SOURCEDIR/tools/* $INSTALLDIR/tools
+INSTALLDIR="$(fapelsystem_printModuleDir)"
 
-sudo cp $SOURCEDIR/fapel_elo.py $INSTALLDIR
-sudo cp $SOURCEDIR/fapel_exiles.py $INSTALLDIR
+echo "fapel system module installed in: ${INSTALLDIR}"
+echo ""
 
-sudo cp $SOURCEDIR/fapxile_file_template $INSTALLDIR
-
-cp $SOURCEDIR/fapel_system_template.conf $CONFIGDIR/fapel_system.conf
+echo "Copying config file..."
+cp -i $INSTALLDIR/fapel_system_template.conf $CONFIGDIR/fapel_system.conf
 
 
 echo ""
 echo "The fapelsystem works with nautilus file manager through scripts in nautilus' script dir."
 echo "These scripts can have emoji names for better visualization of their function."
 echo "You can now choose if you want them with or without emojis in their names."
+echo "Note that sudo is needed for that action."
 echo ""
 
 while true; do
@@ -105,28 +107,28 @@ while true; do
 read -p "Install nautilus scripts with emojis? (y/n) " yn
 
 case $yn in 
-	[yY] )  copy_and_link fapel_tagger.py 1${EMOJITAG}--fapel-tagger.py;
-		copy_and_link fapel_counter.py 2${EMOJIHEARTS}--fapel-notice.py;
-		copy_and_link fapel_counter.py 6${EMOJIEGGPLANT}${EMOJIWATER}--fapel-ct.py;
-		copy_and_link fapel_search_not_tagged.py 5${EMOJIMAGGLAS}--fapel-search-not-tagged.py;
-		copy_and_link fapel_search_source_file.py 5${EMOJIMAGGLAS}--fapel-search-source-file.py;
-		copy_and_link fapel_search_tagged.py 4${EMOJIMAGGLAS}--fapel-search-tagged.py;
-		copy_and_link fapel_fap_set.py 3${EMOJICALENDAR}--fapel-fap-set.py;
-		copy_and_link openLink.sh 9${EMOJIARROW}--open-softlink-folder.sh;
-		copy_and_link fapel_exiles.py 9${EMOJIISLAND}--fapel-exiles.py;
-		copy_and_link fapel_elo.py 9${EMOJITROPHY}--fapel-elo.py;
+	[yY] )  link_module fapel_tagger.py 1${EMOJITAG}--fapel-tagger.py;
+		link_module fapel_counter.py 2${EMOJIHEARTS}--fapel-notice.py;
+		link_module fapel_counter.py 6${EMOJIEGGPLANT}${EMOJIWATER}--fapel-ct.py;
+		link_module fapel_search_not_tagged.py 5${EMOJIMAGGLAS}--fapel-search-not-tagged.py;
+		link_module fapel_search_source_file.py 5${EMOJIMAGGLAS}--fapel-search-source-file.py;
+		link_module fapel_search_tagged.py 4${EMOJIMAGGLAS}--fapel-search-tagged.py;
+		link_module fapel_fap_set.py 3${EMOJICALENDAR}--fapel-fap-set.py;
+		link_module openLink.sh 9${EMOJIARROW}--open-softlink-folder.sh;
+		link_module fapel_exiles.py 9${EMOJIISLAND}--fapel-exiles.py;
+		link_module fapel_elo.py 9${EMOJITROPHY}--fapel-elo.py;
 		break;;
 
-	[nN] )  copy_and_link fapel_tagger.py 1-fapel-tagger.py;
-		copy_and_link fapel_counter.py 2-fapel-notice.py;
-		copy_and_link fapel_counter.py 6-fapel-ct.py;
-		copy_and_link fapel_search_not_tagged.py 5-fapel-search-not-tagged.py;
-		copy_and_link fapel_search_source_file.py 5-fapel-search-source-file.py;
-		copy_and_link fapel_search_tagged.py 4-fapel-search-tagged.py;
-		copy_and_link fapel_fap_set.py 3-fapel-fap-set.py;
-		copy_and_link openLink.sh 9-open-softlink-folder.sh;
-		copy_and_link fapel_exiles.py 9-fapel-exiles.py;
-		copy_and_link fapel_elo.py 9-fapel-elo.py;
+	[nN] )  link_module fapel_tagger.py 1-fapel-tagger.py;
+		link_module fapel_counter.py 2-fapel-notice.py;
+		link_module fapel_counter.py 6-fapel-ct.py;
+		link_module fapel_search_not_tagged.py 5-fapel-search-not-tagged.py;
+		link_module fapel_search_source_file.py 5-fapel-search-source-file.py;
+		link_module fapel_search_tagged.py 4-fapel-search-tagged.py;
+		link_module fapel_fap_set.py 3-fapel-fap-set.py;
+		link_module openLink.sh 9-open-softlink-folder.sh;
+		link_module fapel_exiles.py 9-fapel-exiles.py;
+		link_module fapel_elo.py 9-fapel-elo.py;
 		break;;
 		
 	* ) echo invalid response;;
@@ -134,9 +136,13 @@ esac
 
 done
 
+echo "Changing permissions on installed module files"
+sudo chmod 0755 $INSTALLDIR/*.py
+sudo chmod 0755 $INSTALLDIR/*.sh
+sudo chmod 0644 $INSTALLDIR/*.conf
+sudo chmod 0644 $INSTALLDIR/fapxile_file_template
 
-sudo chown -R root:root $INSTALLDIR
-sudo chmod -R 0755 $INSTALLDIR
+
 
 
 

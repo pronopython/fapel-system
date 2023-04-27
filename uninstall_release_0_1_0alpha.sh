@@ -1,11 +1,18 @@
-#!/usr/bin/env python3
+#!/bin/bash
 #
 ##############################################################################################
 #
 # The fapel system organizes image and video collections under Linux with standard folders.
+# install.sh is the installer script to copy all py files and create nautilus shortcuts
 #
 # For updates see git-repo at
 #https://github.com/pronopython/fapel-system
+#
+##############################################################################################
+#
+INSTALLDIR=/opt/fapelsystem
+CONFIGDIR=~/.config
+NAUTILUSSCRIPTDIR=~/.local/share/nautilus/scripts
 #
 ##############################################################################################
 #
@@ -27,8 +34,31 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 ##############################################################################################
+#
 
+echo "This will uninstall all program files of the fapelsystem version 0.1.0-alpha"
+echo "The following files will be deleted:"
+echo "  - all files under /opt/fapelsystem (=all program files)"
+echo "  - all script links under Nautilus right click menu"
+echo ""
+echo "Media files, Tags or config files will NOT be deleted, but use at your own risk."
+echo "Sudo is needed to delete these files."
+echo ""
 
+while true; do
 
-#__all__ = ["modulename"]
-__all__ = []
+read -p "Delete fapelsystem program files and script links? (y/n) " yn
+
+case $yn in 
+	[yY] )  sudo rm -r /opt/fapelsystem;
+			sudo rm $NAUTILUSSCRIPTDIR/*fapel*.py
+			sudo rm $NAUTILUSSCRIPTDIR/*open-softlink*.sh
+			break;;
+
+	[nN] )  break;;
+
+	* ) echo invalid response;;
+esac
+
+done
+

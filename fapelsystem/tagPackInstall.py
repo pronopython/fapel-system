@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #
 ##############################################################################################
 #
@@ -10,12 +10,11 @@
 #
 ##############################################################################################
 #
-VERSION = "0.1.1" #TODO
-INSTALLDIR="/opt/fapelsystem"
+VERSION = "0.2.1" #TODO
 #
 ##############################################################################################
 #
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -49,7 +48,6 @@ import codecs
 
 
 
-
 print("TagPack Installer")
 
 
@@ -58,17 +56,23 @@ print("TagPack Installer")
 #Import lib
 ##############################################################################################
 
-sys.path.insert(0, INSTALLDIR)
-from fapelsystemlib import fapelSystemConfig
-from fapelsystemlib import dirHelper
 
 
-configParser = fapelSystemConfig.FapelSystemConfig()
+from fapelsystem import config_file_handler as config_file_handler
+from fapelsystem import dir_helper as dir_helper
+
+
+configDir = dir_helper.getConfigDir("Fapelsystem")
+#print(configDir)
+configParser = config_file_handler.FapelSystemConfigFile(os.path.join(configDir,"fapel_system.conf"))
+
 
 
 ##############################################################################################
 #Vars
 ##############################################################################################
+
+INSTALLDIR = dir_helper.getInstallDir()
 
 simulation = False
 tagPackFilename = None
@@ -227,7 +231,7 @@ for line in csvFile:
 
 					os.symlink(os.path.join(INSTALLDIR,"fapel_counter.py"),linkFilename)
 
-					counterKey = dirHelper.getLastPartOfFilename(linkFilename)
+					counterKey = dir_helper.getLastPartOfFilename(linkFilename)
 					print("Counter Name:", counterKey)
 
 
@@ -247,3 +251,9 @@ for line in csvFile:
 		
 
 configParser.writeChangedConfig()
+
+
+# Dummy main to be callable through PIP installer
+# TODO: remove this workaround
+def main():
+	pass

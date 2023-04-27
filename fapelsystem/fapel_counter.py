@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #
 ##############################################################################################
 #
@@ -10,12 +10,11 @@
 #
 ##############################################################################################
 #
-VERSION = "0.1.0" #TODO
-INSTALLDIR="/opt/fapelsystem"
+VERSION = "0.2.0" #TODO
 #
 ##############################################################################################
 #
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -50,12 +49,13 @@ import shutil
 #Import lib
 ##############################################################################################
 
-sys.path.insert(0, INSTALLDIR)
-from fapelsystemlib import fapelSystemConfig
-from fapelsystemlib import dirHelper
+from fapelsystem import config_file_handler as config_file_handler
+from fapelsystem import dir_helper as dir_helper
 
 
-configParser = fapelSystemConfig.FapelSystemConfig()
+configDir = dir_helper.getConfigDir("Fapelsystem")
+#print(configDir)
+configParser = config_file_handler.FapelSystemConfigFile(os.path.join(configDir,"fapel_system.conf"))
 
 
 
@@ -68,25 +68,36 @@ configParser = fapelSystemConfig.FapelSystemConfig()
 # second is file
 
 rootPathKey = None
+noticeableFapel_fullpath = None
 
 
-if (len(sys.argv) != 2):
+if (len(sys.argv) == 2):
+	noticeableFapel_fullpath = os.path.abspath(sys.argv[1])
+	# counter name is derived from the last part after - or _ of this script's name
+	# this can also be from a soft link to this script (which is the main way to
+	# start this script
+	# so softlink what_else_counts_cucumber.py -> fapel_counter.py will look for the
+	# key "cucumber" in the conf file
+	rootPathKey = dir_helper.getLastPartOfFilename(os.path.abspath(sys.argv[0]))
+
+elif (len(sys.argv) == 3):
+	noticeableFapel_fullpath = os.path.abspath(sys.argv[2])
+	rootPathKey = sys.argv[1]
+
+else:
 	print("You must start this with one file as the one to be counted")
 	sys.exit()
 
 
-noticeableFapel_fullpath = os.path.abspath(sys.argv[1])
 
 
-# counter name is derived from the last part after - or _ of this script's name
-# this can also be from a soft link to this script (which is the main way to
-# start this script
-# so softlink what_else_counts_cucumber.py -> fapel_counter.py will look for the
-# key "cucumber" in the conf file
-rootPathKey = dirHelper.getLastPartOfFilename(os.path.abspath(sys.argv[0]))
 print("Counter Name:",rootPathKey)
 
 
+## message
+#root = tkinter.Tk()
+#root.withdraw()
+#messagebox.showinfo("Counter Name:",rootPathKey)
 
 rootpath = configParser.getDir('countersDirs',rootPathKey)
 print(rootPathKey,rootpath)

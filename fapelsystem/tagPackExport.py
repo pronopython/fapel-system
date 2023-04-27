@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #
 ##############################################################################################
 #
@@ -10,12 +10,11 @@
 #
 ##############################################################################################
 #
-VERSION = "0.1.0"
-INSTALLDIR="/opt/fapelsystem"
+VERSION = "0.2.1"
 #
 ##############################################################################################
 #
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -52,12 +51,15 @@ print("TagPack Exporter")
 #Import lib
 ##############################################################################################
 
-sys.path.insert(0, INSTALLDIR)
-from fapelsystemlib import fapelSystemConfig
-from fapelsystemlib import dirHelper
+
+from fapelsystem import config_file_handler as config_file_handler
+from fapelsystem import dir_helper as dir_helper
 
 
-configParser = fapelSystemConfig.FapelSystemConfig()
+configDir = dir_helper.getConfigDir("Fapelsystem")
+#print(configDir)
+configParser = config_file_handler.FapelSystemConfigFile(os.path.join(configDir,"fapel_system.conf"))
+
 
 
 ##############################################################################################
@@ -149,7 +151,7 @@ excludedSubDirs = []
 
 for counterEntry in configParser.items("countersDirs"):
 	cdir = counterEntry[1]
-	cdir = dirHelper.expandHomeDir(cdir)
+	cdir = dir_helper.expandHomeDir(cdir)
 
 	if (cdir.startswith(rootpath)):
 		excludedSubDirs.append(cdir)
@@ -205,4 +207,8 @@ for root,d_names,f_names in os.walk(rootpath):
 			csvFile.writerow(["TAG",codecs.encode(tagname, 'rot_13'),codecs.encode(tooltip, 'rot_13'),tagproperties])
 
 
+# Dummy main to be callable through PIP installer
+# TODO: remove this workaround
+def main():
+	pass
 

@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #
 ##############################################################################################
 #
 # The fapel system organizes image and video collections under Linux with standard folders.
+# fappel_tagger is a GUI based media tagging application.
 #
 # For updates see git-repo at
 #https://github.com/pronopython/fapel-system
@@ -10,11 +11,10 @@
 ##############################################################################################
 #
 VERSION = "0.1.0" #TODO
-CONFIGFILE="~/.config/fapel_system.conf"
 #
 ##############################################################################################
 #
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -34,29 +34,6 @@ CONFIGFILE="~/.config/fapel_system.conf"
 ##############################################################################################
 #
 import os
-from pathlib import Path
-import configparser
 
-
-
-def getHomeDir():
-	return os.path.expanduser('~')
-
-def expandHomeDir(path):
-	return path.replace("~", getHomeDir())
-
-def getFilenameWithoutExtension(pathWithFullFilename):
-	return Path(pathWithFullFilename).stem
-
-def getLastPartOfFilename(path):
-	myName = getFilenameWithoutExtension(os.path.abspath(path))
-	last1 = myName.split('_')[-1]
-	last2 = myName.split('-')[-1]
-	if (last1 != myName) or (last2 != myName):
-		if len(last1) < len(last2):
-			counterKey = last1
-		else:
-			counterKey = last2
-	return counterKey
-
-
+def printModuleDir():
+	print(os.path.dirname(os.path.realpath(__file__)))

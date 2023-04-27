@@ -4,13 +4,19 @@
 
 :eggplant: :sweat_drops: :peach: :cherries: :movie_camera: :lollipop: :hotdog: :eggplant: :sweat_drops: :peach: :cherries: :movie_camera: :lollipop: :hotdog:
 
-With the fapel-system you can organize your **adult images and video collection** under Linux with standard folders. Everything works with hardlinks.
+With the fapel-system you can organize your **adult images and video collection** under Linux and Windows with standard folders. Everything works with hardlinks.
 
 The fapel-system was created and is optimized for adult-oriented images, videos and movies (Pornography / Porn / Pron). Fapel stands for "fap-able element" :-) If you are a passionate collector, this might be for you.
 
 ![](img/142.png)
 
 ![](img/27173524.png)
+
+![](img/85201.png)
+
+![](img/85202.png)
+
+![](img/85208.png)
 
 ![](img/281.gif)
 
@@ -43,44 +49,88 @@ advantages over database based systems
 
 # Requirements
 
-* Ubuntu Linux (all other linux systems might require you to install by hand)
-    * ... with Nautilus file manager (should be standard)
+* Ubuntu Linux or Windows 10
+    * all other linux systems might require you to install by hand
+    * Ubuntu with Nautilus file manager (should be standard)
+    * Windows 11 was not tested
 * Python 3 with tkinter
 * all folders and fapels must be on one logical drive because everything works with hardlinks
+    * On Windows this needs to be an NTFS drive (Should be standard for internal drives). It does not work on external drives formatted with ExtFAT / FAT32!
+
+You can check your drive properties if it is formatted with NTFS (the drive you have your media on):
+
+![](img/85207.png)
 
 ---
 
 # Installation
 
 
-## Clone or download this repo
+## Ubuntu Linux Installation
+
+> :eggplant: :sweat_drops: *You can uninstall the previous version with the `uninstall_release_0_1_0alpha.sh` script.*
+
+
+### 1. Clone or download this repo
 
 Yes, clone or download this repo now!
 
-## Install python tkinter and pillow
+### 2. Install python tkinter and pillow
 
 `sudo apt-get install python3-tk python3-pil.imagetk`
 
+### 3. Install fapelsystem via pip and install shortcuts and Tag dir
 
-## Run install.sh
+In the repo's root run
 
-In `fapelsystem/` run
+`chmod +x install_ubuntu.sh`
 
-`chmod +x install.sh`
+`./install_ubuntu.sh`
 
-`./install.sh`
+It installs fapelsystem via Python's PIP, creates the shortcuts in nautilus and if you want a basic tag directory structure.
 
-> :cherries: *Do not run the install.sh as root (sudo), as it would create config files for root user and not for you*
+> :cherries: *Do not run the install_ubuntu.sh as root (sudo), as it would create config files for root user and not for you*
 
 > :eggplant: :sweat_drops: *If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)*
 
-## Optional: Edit Config File to set up your own directories
+### 4. Optional: Edit Config File to set up your own directories
 
 Edit the config file
 
 `~/.config/fapel_system.conf`
 
 to use the directories you want.
+
+
+## Windows Installation
+
+
+### 1. Clone or download this repo
+
+Yes, clone or download this repo now!
+
+### 2. Install Python
+
+Download and install Python 3
+
+[https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
+
+### 3. Install fapelsystem via pip and install shortcuts and Tag dir
+
+Start (doubleclick) `install_windows.bat`
+
+It installs fapelsystem via Python's PIP, creates the shortcuts in Explorer's "Send to" menu and if you want a basic tag directory structure.
+
+> :eggplant: :sweat_drops: *If you are new then let the fapelsystem create the dirs (`y`). Otherwise you have to change the config file yourself (NOT recommended for new users!)*
+
+### 4. Optional: Edit Config File to set up your own directories
+
+Edit the config file
+
+`[YOUR HOME DIRECTORY]\AppData\Roaming\Fapelsystem\fapel_system.conf`
+
+to use the directories you want.
+
 
 ---
 
@@ -97,6 +147,11 @@ Rightclick to start the tagger
 
 ![](img/001.png)
 
+Under Windows you find the tagger in the Send to submenu:
+
+![](img/85201.png)
+
+
 This is the fapel_tagger! It presents all tags for you as buttons you can press to select or deselect a tag!
 
 ![](img/002.png)
@@ -110,7 +165,9 @@ Go to
 
 `~/fapelsystem/Tags/`
 
-And just create directories and nested directories as you like! These are your Tags!
+On Windows you find this folder in your home directory under documents.
+
+And now just create directories and nested directories as you like! These are your Tags!
 
 You can also delete directories (delete Tags) as you like.
 
@@ -211,6 +268,8 @@ This is important to know:
 
 ## Remember today's favorites
 
+![](img/85203.png)
+
 Maybe I find some pictures worth a second, condensed visit for today.
 Or I want to collect some pictures for today's "enjoyment".
 
@@ -222,7 +281,7 @@ This one
 
 ![](img/201.png)
 
-and this one 
+and this one
 
 ![](img/202.png)
 
@@ -240,6 +299,8 @@ Nice feature: The "roll over" to the next day and thus the next folder happens n
 
 
 ## Filter Tag Library to focus on topics
+
+> :cherries: *This feature is currently not available under Windows*
 
 > :peach: *Only tested with nautilus*
 
@@ -297,7 +358,7 @@ In this folder I create a hidden file named ".fapxile" with the content:
 
 `[excludedSubTags]`
 
-> :peach: *Pro tip: install folder /opt/fapelsystem contains a template of this file called fapxile_file_template*
+> :peach: *Pro tip: the git folder ./fapelsystem contains a template of this file called fapxile_file_template*
 
 
 
@@ -373,9 +434,13 @@ This creates a search folder based on current date and time (in this example it'
 
 (Of course, the not-tagged script does the exact opposite ;-) )
 
+![](img/85204.png)
 
+![](img/85205.png)
 
 ## Search tagged source file
+
+> :cherries: *This feature is currently not available under Windows*
 
 All images within the /Tags folder are just hardlinks of your original images somewhere in your collection.
 
@@ -418,6 +483,8 @@ With the fapel_elo you can rank your images and decide which one is better (as i
 
 ![](img/270.png)
 
+![](img/85206.png)
+
 *(Again, bear in mind that the images on this page are censored -- of course normally you would see your images as you know them :-) )*
 
 The GUI is quite simple: Two images from your Tags folder are presented at random.
@@ -455,18 +522,20 @@ Now the former right image moved *before* the former left image in the directory
 
 # TagPacks
 
+> :cherries: *This feature is currently not available under Windows*
+
 You can install additionally Tags by using TagPacks.
 TagPacks are basically CSV Table files containing which dirs should be created.
 
-Use the tagPackInstall.py tool under /opt/fapelsystem/tools
+Use the fapelsystem_tagPackInstall tool
 
 Preview a tagPack file with `-s`, example:
 
-`./tagPackInstall.py -s tagPack_Models_20220704a.csv`
+`fapelsystem_tagPackInstall -s tagPack_Models_20220704a.csv`
 
 Install it with (example):
 
-`./tagPackInstall.py tagPack_Models_20220704a.csv`
+`fapelsystem_tagPackInstall tagPack_Models_20220704a.csv`
 
 
 These are some additional TagPacks:
@@ -502,6 +571,19 @@ Inspired by the video platform P.H.
 
 [Go to TagPack Download](http://fapel-system.epizy.com/)
 
+
+## Export Tags and create a TagPack file
+
+Run
+
+`fapelsystem_tagPackExport myTagPack.csv`
+
+to export your Tag names to provide them for others.
+
+You can edit the exported file using your favorite spreadsheet editor (Excel, Calc...).
+All names are hidden using rot13. Use `-c` to export all names in clear text.
+Use `-n` to add a NSFW flag to the file.
+
 ---
 
 # Technical stuff
@@ -511,6 +593,26 @@ Inspired by the video platform P.H.
 You find the config file under
 
 `~/.config/fapel_system.conf`
+
+
+## GUI configuration
+
+You can adjust the GUI with different config file settings.
+
+### More Tags on Screen
+
+If you have a lot of tags, you can make room for more tags on the screen. Change these two settings:
+
+Increase the number of buttons per column:
+
+`buttonsPerColumn=40`
+
+Decrease the font size (e.g. 9 instead of 10):
+`tagFontSize=9`
+
+### Colors
+
+Under the group `[colors]` you can adjust the GUI colors to your favorite ones!
 
 ## How files are organized in folders
 
@@ -534,7 +636,9 @@ You can create as many counters as you like. They are individually called via a 
 
 The softlink must point to
 
-`/opt/fapelsystem/fapel_counter.py`
+`[installdir]/fapel_counter.py`
+
+> :eggplant: :sweat_drops: *Run `fapelsystem_printModuleDir` to print out the install dir on console.*
 
 The name of the softlink must *end* with a key for the specific counter ("COUNTERID")
 
@@ -645,6 +749,19 @@ If you also want to hide the `Watched completly` folder by itself, just *also* p
 ... but this readme is not done yet...
 
 # Changelog
+
+## Release April 2023
+
+### Added
+
+- Support for Windows including a batch-file based installer
+
+### Changed
+
+- fapel system program files are now installed locally via PIP
+
+- installer for Ubuntu Linux was changed accordingly
+
 
 ## Release November 2022
 

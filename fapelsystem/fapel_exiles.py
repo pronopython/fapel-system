@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #
 ##############################################################################################
 #
@@ -11,12 +11,11 @@
 #
 ##############################################################################################
 #
-VERSION = "0.1.0"
-INSTALLDIR="/opt/fapelsystem"
+VERSION = "0.2.0"
 #
 ##############################################################################################
 #
-# Copyright (C) 2022 PronoPython
+# Copyright (C) 2022-2023 PronoPython
 #
 # Contact me at pronopython@proton.me
 #
@@ -50,13 +49,14 @@ import time
 #Import lib
 ##############################################################################################
 
-sys.path.insert(0, INSTALLDIR)
-from fapelsystemlib import fapelSystemConfig
-from fapelsystemlib import dirHelper
+from fapelsystem import config_file_handler as config_file_handler
+from fapelsystem import dir_helper as dir_helper
 
 
-configParser = fapelSystemConfig.FapelSystemConfig()
-homedir = dirHelper.getHomeDir()
+configDir = dir_helper.getConfigDir("Fapelsystem")
+#print(configDir)
+configParser = config_file_handler.FapelSystemConfigFile(os.path.join(configDir,"fapel_system.conf"))
+homedir = dir_helper.getHomeDir()
 
 
 
