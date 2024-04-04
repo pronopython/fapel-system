@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='fapelsystem',
-	version='0.2.0-alpha',
+	version='0.2.1-alpha',
 	description='The fapel system organizes image and video collections',
 	url='https://github.com/pronopython/fapel-system',
 	author='pronopython',
@@ -11,7 +11,7 @@ setup(name='fapelsystem',
 	package_data={'fapelsystem':['*']},
 	include_package_data=True,
 	zip_safe=False,
-	install_requires=['Pillow'],
+	install_requires=['Pillow>=9.0.1'],
 	entry_points={
         'console_scripts': [
             'fapelsystem_printModuleDir=fapelsystem.print_module_dir:printModuleDir',
@@ -20,6 +20,4 @@ setup(name='fapelsystem',
         ]
     	}
     )
-
-#print("the exit is here")
 

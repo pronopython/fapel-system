@@ -744,11 +744,17 @@ with it's automated subdirectories you count how often you completly watched a v
 Place an empty file named ".hide-child-buttons" in the `/Tags/Videos/Watched completly` folder.
 If you also want to hide the `Watched completly` folder by itself, just *also* place an empty file named ".hide_button" in it, too.
 
-# There is more
-
-... but this readme is not done yet...
-
 # Changelog
+
+## Release v0.2.1-alpha
+
+### Added
+
+- fapel_elo now appends lower ranked new pictures at the end of the Elo ranking
+
+### Fixed
+
+- setup.py now requires specific versions of modules
 
 ## Release April 2023 v0.2.0-alpha
 

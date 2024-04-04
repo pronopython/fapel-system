@@ -191,7 +191,7 @@ class CurrentFapels:
 	global MIN_ELO_RANK
 	global MAX_ELO_RANK
 
-	PROBABILITY_TAKE_FROM_RANKED = 0.8
+	PROBABILITY_TAKE_FROM_RANKED = 0.5
 
 	useBothMouseButtons = True
 	clicksUntilChange = 3
@@ -350,8 +350,16 @@ class CurrentFapels:
 			eloLeft = self.getEloRankedOneHigher(fapelLooser)
 			if ((fapelLooser.elo - eloLeft) < 3): # still too close?
 				print("elos to close together, too many elos, giving up... panic") 
-				exit();
+				exit()
 		return random.randint(eloLeft + 1, fapelLooser.elo - 1)
+	
+	def getNewEndElo(self, lastFapel):
+		if ((MAX_ELO_RANK - lastFapel.elo) < 3):
+			self.defragmentAllElos()
+			if ((MAX_ELO_RANK - lastFapel.elo) < 3): # still too close?
+				print("elos to close together, too many elos, giving up... panic") 
+				exit()
+		return random.randint(lastFapel.elo + 1, MAX_ELO_RANK - 1)
 
 	def rankFapelWinnerLooser(self, fapelWinner, fapelLooser):
 		
@@ -359,15 +367,28 @@ class CurrentFapels:
 
 		if ((fapelWinner.elo == -1) and (fapelLooser.elo == -1)):
 			print("First fapel ranked")
-			fapelWinner.elo = MAX_ELO_RANK
+			fapelWinner.elo = MIN_ELO_RANK + int((MAX_ELO_RANK - MIN_ELO_RANK) / 2)
 			fapelWinner.updateElo()
 			self.rankedFapels.append(fapelWinner)
 			self.sortFapels()
 
 		# [ELO] wins over [no elo]			
-		elif ((fapelWinner.elo > -1) and (fapelLooser.elo == -1)):  # TODO remove thisone
-			# nothing to do?!
-			xyz = 1
+		elif ((fapelWinner.elo > -1) and (fapelLooser.elo == -1)):
+			self.sortFapels()
+			lastFapel = self.rankedFapels[-1]
+			secondLastElo = self.getFittingElo(lastFapel)
+
+
+			#fapelLooser.elo = lastFapel.elo
+			fapelLooser.elo = self.getNewEndElo(lastFapel)
+			lastFapel.elo = secondLastElo
+			lastFapel.updateElo()
+			fapelLooser.updateElo()
+			self.rankedFapels.append(fapelLooser)
+			self.sortFapels()
+
+
+
 		# [no elo] wins over [ELO]
 		elif ((fapelWinner.elo == -1) and (fapelLooser.elo > -1)):
 			newElo = self.getFittingElo(fapelLooser)

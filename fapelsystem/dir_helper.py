@@ -50,6 +50,7 @@ def getFilenameWithoutExtension(pathWithFullFilename):
 
 def getLastPartOfFilename(path):
 	myName = getFilenameWithoutExtension(os.path.abspath(path))
+	counterKey = myName # was unbound in v0.2.0-alpha
 	last1 = myName.split('_')[-1]
 	last2 = myName.split('-')[-1]
 	if (last1 != myName) or (last2 != myName):
